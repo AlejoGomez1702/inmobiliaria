@@ -1,0 +1,7 @@
+{
+  "name": "inmoviliaria",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
