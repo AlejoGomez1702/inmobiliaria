@@ -1,8 +1,25 @@
-<ion-card>
+<ion-card class="mt-5">
   <ion-card-header>
-    <ion-card-title>Iniciar Sesión</ion-card-title>
+    <ion-card-title class="text-center font-weight-bold">Iniciar Sesión</ion-card-title>
   </ion-card-header>
+  <div class="text-center">
+    <img src="assets/user.svg" />
+  </div>  
   <ion-card-content>
-    Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item class="mt-3">
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="mt-3">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Recuerdame</ion-label>
+        <ion-checkbox color="primary" slot="start" formControlName="remember_me"></ion-checkbox>
+      </ion-item>
+      <ion-button type="submit" class="mt-5" expand="block" [disabled]="!loginForm.valid">Ingresar</ion-button>
+    </form>
   </ion-card-content>
 </ion-card>
