@@ -10,15 +10,9 @@ import { Login } from 'src/app/shared/interfaces/Login';
 })
 export class LoginComponent implements OnInit 
 {
-  // public loginForm: any = {
-  //   email: '',
-  //   password: '',
-  //   remenber_me: false
-  // };
-
   public loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('mail@mail.com', Validators.required),
+    password: new FormControl('12345678', Validators.required),
     remember_me: new FormControl(false, Validators.required)
   });
 
