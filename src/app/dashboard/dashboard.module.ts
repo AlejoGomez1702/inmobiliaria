@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { RootComponent } from './root/root.component';
+import { CoreModule } from '../core/core.module';
+import { DiaryComponent } from './diary/diary.component';
 
 
 @NgModule({
   declarations: [
-    RootComponent
+    RootComponent,
+    DiaryComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    CoreModule
   ]
 })
 export class DashboardModule { }

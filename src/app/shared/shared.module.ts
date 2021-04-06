@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [],
@@ -10,12 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     IonicModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgCalendarModule,
   ],
   exports: [
     IonicModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgCalendarModule
   ]
 })
 export class SharedModule { }
