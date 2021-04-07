@@ -19,10 +19,11 @@ export class HeadersInterceptor implements HttpInterceptor
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const requestUri = request.url;
-    if(requestUri.endsWith('auth/login'))
+    // if(requestUri.endsWith('auth/login') || requestUri.includes('api.wasi.co'))
+    if(true)
     {
       let headers: HttpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json; charset=UTF-8')
+      .set('Content-Type', 'application/json')
       .set("X-Requested-With", 'XMLHttpRequest')
 
       const authReq = request.clone({

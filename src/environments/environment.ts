@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000/api/'
+  apiUrl: 'http://127.0.0.1:8000/api/',
+  wasiApiUrl: 'https://api.wasi.co/v1/',
+  wasiToken: 'AznB_bYld_H17o_Z9PI',
+  wasiIdCompany: '2145811'
 };
 
 /*
