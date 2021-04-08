@@ -68,6 +68,7 @@ export class ListPropertiesComponent implements OnInit
 
   search(event)
   {
+    // this.skip = 0;
     this.match = event.detail.value;
     this.loadProperties(null, this.match);
   }
@@ -78,11 +79,4 @@ export class ListPropertiesComponent implements OnInit
     this.skip = 0;
     this.loadProperties();
   }
-
-  // goToProperty(id: string)
-  // {
-  //   this.router.navigate(['properties']);
-  // }
-
-
 }

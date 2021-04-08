@@ -22,6 +22,11 @@ export class PropertyService
     return this.httpClient.post(environment.apiUrl + 'properties', body);
   }
 
+  public getPropertyById(id: string)
+  {
+    return this.httpClient.get(environment.apiUrl + 'properties/' + id);
+  }
+
   public pruebas(page: number)
   {
     return this.httpClient.get('https://randomuser.me/api/?results=20&page=' + page);

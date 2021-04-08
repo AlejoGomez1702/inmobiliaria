@@ -19,7 +19,9 @@
         <ion-label>Recuerdame</ion-label>
         <ion-checkbox color="primary" slot="start" formControlName="remember_me"></ion-checkbox>
       </ion-item>
-      <ion-button type="submit" class="mt-5" expand="block" [disabled]="!loginForm.valid">Ingresar</ion-button>
+      <ion-button type="submit" color="main-pantone" class="mt-5" expand="block" [disabled]="!loginForm.valid">
+        <ion-label color="white">Ingresar</ion-label>
+      </ion-button>
     </form>
   </ion-card-content>
 </ion-card>

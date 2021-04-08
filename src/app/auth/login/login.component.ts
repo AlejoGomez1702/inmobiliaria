@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Login } from 'src/app/shared/interfaces/Login';
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit
   });
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) 
   { 
   }
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit
     this.authService.login(loginData).subscribe(
       response => {
         console.log(response)
+        this.router.navigate(['/dashboard/root']);
       },
       error => {
         console.log(error)

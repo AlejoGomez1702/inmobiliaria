@@ -1,3 +1,165 @@
-<p>
-  property-details works!
-</p>
+<ion-header>
+  <ion-toolbar color="main-pantone">
+    <ion-buttons slot="start">
+      <ion-menu-button color="white"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="white">Detalles Propiedad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides [options]="sliderOptions">
+      <ion-slide *ngFor="let img of images">
+        <img src="{{img}}" tappable (click)="openPreview(img)">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            <h1 class="font-weight-bold text-center">{{ property.title }}</h1>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Código:  </ion-label>
+            <ion-label>{{ property.id_property }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Negocio:  </ion-label>
+            <ion-label>{{ property.for_sale == 'true' ? 'Venta' : 'Alquiler' }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">En:  </ion-label>
+            <ion-label>{{ property.country_label + ' | ' + property.region_label + ' | ' + property.city_label }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Zona / Barrio:  </ion-label>
+            <ion-label>{{ property.zone_label }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Área Construida:  </ion-label>
+            <ion-label>{{ property.built_area + ' ' }} M<sup>2</sup></ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Estrato:  </ion-label>
+            <ion-label>{{ property.stratum }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Estado Físico:  </ion-label>
+            <ion-label>{{ property.property_condition_label === 'Used' ? 'Usado' : 'Nuevo' }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Año Construcción:   </ion-label>
+            <ion-label>{{ property.building_date }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Baños:   </ion-label>
+            <ion-label>{{ property.bathrooms }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Garaje:   </ion-label>
+            <ion-label>{{ property.garages }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Alcoba:   </ion-label>
+            <ion-label>{{ property.bedrooms }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label color="medium">Piso:   </ion-label>
+            <ion-label>{{ property.floor }}</ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <ion-label class="h5">
+              {{ property.for_rent === 'true' ? 'Precio de Renta:   ' : 'Precio de Venta:   ' }}
+            </ion-label>
+            <ion-label color="success" class="h4">
+              {{ property.for_rent === 'true' ? property.rent_price_label : property.sale_price_label }}
+            </ion-label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+
+</ion-content>

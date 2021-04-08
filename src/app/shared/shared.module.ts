@@ -12,7 +12,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    NgCalendarModule,
+    NgCalendarModule
   ],
   exports: [
     IonicModule,
