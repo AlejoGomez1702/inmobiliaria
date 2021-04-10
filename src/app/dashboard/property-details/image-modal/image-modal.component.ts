@@ -13,8 +13,9 @@ export class ImageModalComponent implements OnInit
   @ViewChild('slider', {read: ElementRef})slider: ElementRef;
 
   sliderOptions = {
+    // zoom: true
     zoom: {
-      maxRatio: 3
+      maxRatio: 5
     }
   };
 

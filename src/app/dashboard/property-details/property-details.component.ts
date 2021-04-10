@@ -11,6 +11,13 @@ import { ImageModalComponent } from './image-modal/image-modal.component';
 })
 export class PropertyDetailsComponent implements OnInit 
 {
+  public displayFeatures = {
+    internalFeatures: false,
+    externalFeatures: false,
+    description: false,
+    observations: false
+  };
+
   private property = {};
 
   public images: string[];
@@ -57,7 +64,7 @@ export class PropertyDetailsComponent implements OnInit
           return img.url;
         });
 
-        console.log(this.images);
+        // console.log(this.images);
       }
     );
   }

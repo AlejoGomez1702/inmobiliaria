@@ -4,9 +4,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgCalendarModule } from 'ionic2-calendar';
+import { HtmlToTextPipe } from './pipes/html-to-text.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HtmlToTextPipe
+  ],
   imports: [
     CommonModule,
     IonicModule,
@@ -18,7 +21,8 @@ import { NgCalendarModule } from 'ionic2-calendar';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    NgCalendarModule
+    NgCalendarModule,
+    HtmlToTextPipe
   ]
 })
 export class SharedModule { }

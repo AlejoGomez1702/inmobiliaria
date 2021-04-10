@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="main-pantone">
     <ion-buttons slot="start">
-      <ion-menu-button color="white"></ion-menu-button>
+      <ion-back-button color="white"></ion-back-button>
     </ion-buttons>
     <ion-title color="white">Detalles Propiedad</ion-title>
   </ion-toolbar>
@@ -159,7 +159,142 @@
         </ion-col>
       </ion-row>
 
+      <ion-row>
+        <ion-col size="12">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item 
+              [color]="displayFeatures.internalFeatures ? 'main-pantone' : ''" 
+              (click)="displayFeatures.internalFeatures = !displayFeatures.internalFeatures">
+
+            <ion-icon slot="start" 
+                [name]="!displayFeatures.internalFeatures ? 'add-circle' : 'close-circle'" 
+                [color]="displayFeatures.internalFeatures ? 'white' : ''">
+            </ion-icon>
+
+            <ion-label [color]="displayFeatures.internalFeatures ? 'white' : ''">
+              Características Internas
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-grid fixed *ngIf="displayFeatures.internalFeatures">
+        <ion-row *ngFor="let feature of property.features.internal">
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+              <ion-label>{{ feature.nombre }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item 
+              [color]="displayFeatures.externalFeatures ? 'main-pantone' : ''" 
+              (click)="displayFeatures.externalFeatures = !displayFeatures.externalFeatures">
+
+            <ion-icon slot="start" 
+                [name]="!displayFeatures.externalFeatures ? 'add-circle' : 'close-circle'" 
+                [color]="displayFeatures.externalFeatures ? 'white' : ''">
+            </ion-icon>
+
+            <ion-label [color]="displayFeatures.externalFeatures ? 'white' : ''">
+              Características Externas
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-grid fixed *ngIf="displayFeatures.externalFeatures">
+        <ion-row *ngFor="let feature of property.features.external">
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+              <ion-label>{{ feature.nombre }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item 
+              [color]="displayFeatures.description ? 'main-pantone' : ''" 
+              (click)="displayFeatures.description = !displayFeatures.description">
+
+            <ion-icon slot="start" 
+                [name]="!displayFeatures.description ? 'add-circle' : 'close-circle'" 
+                [color]="displayFeatures.description ? 'white' : ''">
+            </ion-icon>
+
+            <ion-label [color]="displayFeatures.description ? 'white' : ''">
+              Descripción
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-grid fixed *ngIf="displayFeatures.description">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+              <p class="text-justify" [innerHtml]="property.observations"></p>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item 
+              [color]="displayFeatures.observations ? 'main-pantone' : ''" 
+              (click)="displayFeatures.observations = !displayFeatures.observations">
+
+            <ion-icon slot="start" 
+                [name]="!displayFeatures.observations ? 'add-circle' : 'close-circle'" 
+                [color]="displayFeatures.observations ? 'white' : ''">
+            </ion-icon>
+
+            <ion-label [color]="displayFeatures.observations ? 'white' : ''">
+              Observaciones
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-grid fixed *ngIf="displayFeatures.observations">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+              <p class="text-justify" [innerHtml]="property.comment"></p>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Boton agendamiento de cita -->
+      <!-- <ion-row>
+        <ion-col size="12">
+          <ion-button>
+            <ion-icon slot="start" name="star" expand="full"></ion-icon>
+            Left Icon
+          </ion-button>
+        </ion-col>
+      </ion-row> -->
+
     </ion-grid>
-
-
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" color="success" [routerLink]="['/dashboard/tasks/new', property.id_property]">
+      <ion-icon slot="start" name="calendar"></ion-icon>
+      Agendar Cita
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

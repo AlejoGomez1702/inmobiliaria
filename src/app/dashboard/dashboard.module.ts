@@ -8,6 +8,7 @@ import { DiaryComponent } from './diary/diary.component';
 import { ListPropertiesComponent } from './list-properties/list-properties.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
 import { ImageModalComponent } from './property-details/image-modal/image-modal.component';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ImageModalComponent } from './property-details/image-modal/image-modal.
     DiaryComponent,
     ListPropertiesComponent,
     PropertyDetailsComponent,
-    ImageModalComponent
+    ImageModalComponent,
+    NewTaskComponent
   ],
   imports: [
     CommonModule,
