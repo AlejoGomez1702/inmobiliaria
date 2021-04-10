@@ -15,14 +15,16 @@ import { HtmlToTextPipe } from './pipes/html-to-text.pipe';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    NgCalendarModule
+    NgCalendarModule,
+    // IonicSelectableModule
   ],
   exports: [
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
     NgCalendarModule,
-    HtmlToTextPipe
+    HtmlToTextPipe,
+    // IonicSelectableModule
   ]
 })
 export class SharedModule { }
