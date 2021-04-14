@@ -12,15 +12,16 @@ export class ClientService
     private httpClient: HttpClient,
   ) { }
 
-  public getAllClients(skip?: string, match?: string)
+  public getAllClients(skip?: string, match?: string, idClient?: number)
   {
-    // const body = {
-    //   'skip': skip,
-    //   'take': 10,
-    //   'match': match ? match : ''
-    // };
+    const body = {
+      'skip': skip,
+      'take': 10,
+      'match': match ? match : '',
+      'id_client_type': idClient
+    };
 
     // return this.httpClient.post(environment.apiUrl + 'properties', body);
-    return this.httpClient.get(environment.apiUrl + 'clients');
+    return this.httpClient.post(environment.apiUrl + 'clients', body);
   }
 }

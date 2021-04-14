@@ -9,6 +9,7 @@ import { ListPropertiesComponent } from './list-properties/list-properties.compo
 import { PropertyDetailsComponent } from './property-details/property-details.component';
 import { ImageModalComponent } from './property-details/image-modal/image-modal.component';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { ModalSelectClientComponent } from './new-task/modal-select-client/modal-select-client.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NewTaskComponent } from './new-task/new-task.component';
     ListPropertiesComponent,
     PropertyDetailsComponent,
     ImageModalComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    ModalSelectClientComponent
   ],
   imports: [
     CommonModule,

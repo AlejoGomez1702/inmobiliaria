@@ -8,5 +8,64 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <!-- <ion-item> -->
+            <ion-button expand="block" color="success" (click)="presentModalForSelectClient()">
+              Seleccionar Cliente...
+              <ion-icon slot="end" name="people"></ion-icon>
+            </ion-button>
+          <!-- </ion-item>         -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <p class="text-center">{{ selectedClient.first_name ? selectedClient.first_name + ' ' + selectedClient.last_name : 'Seleccione un cliente...' }}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-checkbox color="success" formControlName="notify_clients"></ion-checkbox>
+            <ion-label class="ml-3">¿Notificar al Cliente?</ion-label>          
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Asunto</ion-label>
+            <ion-input formControlName="subject"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Fecha</ion-label>
+            <!-- <ion-label>D MMM YYYY H:mm</ion-label> -->
+            <ion-datetime displayFormat="D MMM YYYY H:mm" min="1997" max="2010" value="2005-06-17T11:06Z" formControlName="date"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Detalles de la Visita</ion-label>
+            <ion-textarea formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
+    <ion-button type="submit" [disabled]="!taskForm.valid">
+      <ion-icon slot="start" name="add"></ion-icon>
+      Crear Tarea
+    </ion-button>
+  </form>
+  
 </ion-content>

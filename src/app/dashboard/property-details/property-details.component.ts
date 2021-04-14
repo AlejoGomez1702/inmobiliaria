@@ -50,6 +50,7 @@ export class PropertyDetailsComponent implements OnInit
       res => {
         console.log(res);
         this.property = res;
+        this.propertyService.selectedProperty = res;
         const galleriesArray = res['galleries'];
         const galleries = galleriesArray[0];
         delete galleries.id;

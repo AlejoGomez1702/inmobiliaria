@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class PropertyService 
 {
+  public selectedProperty: any;
+
   constructor(
     private httpClient: HttpClient,
   ) { }

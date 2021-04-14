@@ -19,7 +19,6 @@ export class ListPropertiesComponent implements OnInit
 
   constructor(
     private propertyService: PropertyService,
-    private router: Router
   ) 
   {
     this.loadProperties();
@@ -69,12 +68,14 @@ export class ListPropertiesComponent implements OnInit
   search(event)
   {
     // this.skip = 0;
+    this.properties = [];
     this.match = event.detail.value;
     this.loadProperties(null, this.match);
   }
 
   cancelSearch()
   {
+    this.properties = [];
     this.match = '';
     this.skip = 0;
     this.loadProperties();

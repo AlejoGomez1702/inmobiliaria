@@ -12,8 +12,8 @@ import { Login } from 'src/app/shared/interfaces/Login';
 export class LoginComponent implements OnInit 
 {
   public loginForm = new FormGroup({
-    email: new FormControl('mail@mail.com', Validators.required),
-    password: new FormControl('12345678', Validators.required),
+    email: new FormControl('wilsonladino@vistainmobiliariasas.com', Validators.required),
+    password: new FormControl('wilson2017', Validators.required),
     remember_me: new FormControl(false, Validators.required)
   });
 
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit
     this.authService.login(loginData).subscribe(
       response => {
         console.log(response)
+        localStorage.setItem('user_email', loginData.email);
         this.router.navigate(['/dashboard/root']);
       },
       error => {
