@@ -62,10 +62,16 @@
         </ion-col>
       </ion-row>  
     </ion-grid>
-    <ion-button type="submit" [disabled]="!taskForm.valid">
-      <ion-icon slot="start" name="add"></ion-icon>
-      Crear Tarea
-    </ion-button>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button ion-button type="submit" [disabled]="!taskForm.valid" expand="full" color="main-pantone">
+          <ion-icon color="white" slot="start" name="add-circle"></ion-icon>
+          <ion-label color="white">Agendar</ion-label>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
   </form>
   
 </ion-content>

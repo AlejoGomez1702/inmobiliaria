@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/core/services/user.service';
 import { ModalSelectClientComponent } from './modal-select-client/modal-select-client.component';
+import { TaskService } from 'src/app/core/services/task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -30,7 +31,8 @@ export class NewTaskComponent implements OnInit
   constructor(
     private activatedRoute: ActivatedRoute,
     public modalController: ModalController,
-    private userService: UserService
+    private userService: UserService,
+    private taskService: TaskService
   ) 
   { 
     this.userService.getAllUsers().subscribe(
@@ -62,7 +64,13 @@ export class NewTaskComponent implements OnInit
   createTask()
   {
     this.taskForm.setControl('clients', new FormControl([this.selectedClient['id_client']]));
-    console.log(this.taskForm.value);
+    const task = this.taskForm.value;
+    this.taskService.createTask(task).subscribe(
+      res => console.log(res)
+    );
+
+
+    console.log(task);
 
   }
 

@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit
       response => {
         console.log(response)
         localStorage.setItem('user_email', loginData.email);
+        this.authService.userEmail = loginData.email;
         this.router.navigate(['/dashboard/root']);
       },
       error => {

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="main-pantone">
+    <ion-buttons slot="start">
+      <ion-back-button color="white"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="white">Finalizar Visita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addPhoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <form [formGroup]="taskForm" (ngSubmit)="finishTask()" class="mt-5">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Detalles de la Visita</ion-label>
+            <ion-textarea formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button ion-button type="submit" [disabled]="!taskForm.valid" expand="full" color="main-pantone">
+          <ion-icon color="white" slot="start" name="add-circle"></ion-icon>
+          <ion-label color="white">Agendar</ion-label>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
+  </form>
+  
+</ion-content>

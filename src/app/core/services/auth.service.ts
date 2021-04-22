@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService 
 {
+  public userEmail: string = '';
 
   constructor(
     private httpClient: HttpClient,

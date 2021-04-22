@@ -3,17 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
   },
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule)
-  },
-  {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
   },
   {
     path: 'folder/:id',
