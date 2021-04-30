@@ -1,8 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PhotoService } from 'src/app/core/services/photo.service';
+// import { PhotoService } from 'src/app/core/services/photo.service';
 // import { SignaturePad } from 'angular2-signaturepad/angular2-signaturepad';
+import { Plugins, CameraResultType, CameraSource, CameraPhoto } from '@capacitor/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SignaturePad } from 'angular2-signaturepad';
+import jsPDF from 'jspdf';
+// import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-complete-task',
@@ -32,9 +36,16 @@ export class CompleteTaskComponent implements OnInit, AfterViewInit
     description: new FormControl('', Validators.required)
   });
 
+  private signatureImage: any;
+  public photo: SafeResourceUrl;
+  private takedPhoto: CameraPhoto;
+
   constructor(
-    public photoService: PhotoService
-  ) { }
+    private sanitalizer: DomSanitizer
+    // public photoService: PhotoService
+  ) 
+  { 
+  }
 
   ngAfterViewInit(): void {
     // this.signaturePad is now available
@@ -44,13 +55,26 @@ export class CompleteTaskComponent implements OnInit, AfterViewInit
 
   ngOnInit() {}
 
-  addPhoto() {
-    this.photoService.addNewToGallery();
+  async takePhoto() 
+  {
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera
+    });
+
+    this.photo = this.sanitalizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    this.takedPhoto = image;
+
+    console.log(image);
   }
 
   drawComplete() {
     // will be notified of szimek/signature_pad's onEnd event
     console.log(this.signaturePad.toDataURL());
+    this.signatureImage = this.signaturePad.toDataURL();
+
   }
 
   drawStart() {
@@ -60,6 +84,32 @@ export class CompleteTaskComponent implements OnInit, AfterViewInit
 
   finishTask()
   {
+    const doc = new jsPDF();
+
+    const date = new Date();
+    const dateStr =
+          ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+          ("00" + date.getDate()).slice(-2) + "/" +
+          date.getFullYear() + " " +
+          ("00" + date.getHours()).slice(-2) + ":" +
+          ("00" + date.getMinutes()).slice(-2) + ":" +
+          ("00" + date.getSeconds()).slice(-2);
+
+    doc.setFontSize(11);
+    doc.text(dateStr, 10, 10);
+
+    doc.addImage(this.takedPhoto.dataUrl, this.takedPhoto.format, 10, 20, 100, 100);
+
+    doc.setFontSize(14);    
+    doc.text('Detalles de la visita:', 10, 130);
+    doc.setFontSize(12);
+    doc.text(this.taskForm.controls['description'].value, 10, 140);
+    doc.setFontSize(16);
+    doc.text('Firma:', 10, 180);
+    doc.addImage(this.signatureImage, 'PNG', 10, 190, (500/10), (200/10));
+
+    doc.save(`${dateStr}.pdf`);
+
     // this.taskForm.setControl('clients', new FormControl([this.selectedClient['id_client']]));
     // const task = this.taskForm.value;
     // this.taskService.createTask(task).subscribe(

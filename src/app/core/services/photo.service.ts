@@ -12,7 +12,7 @@ export class PhotoService
 
   constructor() { }
 
-  public async addNewToGallery() {
+  public async takePhoto() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri, 
