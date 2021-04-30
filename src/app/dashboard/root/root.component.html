@@ -18,7 +18,7 @@
         
           <ion-card-content>
             <div class="text-center">
-              <ion-label class="h1">23</ion-label>
+              <ion-label class="h1">{{ countInProgress }}</ion-label>
             </div>            
           </ion-card-content>
         </ion-card>
@@ -34,7 +34,7 @@
         
           <ion-card-content>
             <div class="text-center">
-              <ion-label class="h1">41</ion-label>
+              <ion-label class="h1">{{ countExpired }}</ion-label>
             </div>            
           </ion-card-content>
         </ion-card>
@@ -45,12 +45,12 @@
       <ion-col size="12">
         <ion-card color="success">
           <ion-card-header>
-            <ion-card-title class="h2 text-center">Terminadas</ion-card-title>
+            <ion-card-title class="h2 text-center">Completadas</ion-card-title>
           </ion-card-header>
         
           <ion-card-content>
             <div class="text-center">
-              <ion-label class="h1">3</ion-label>
+              <ion-label class="h1">{{ countCompleted }}</ion-label>
             </div>            
           </ion-card-content>
         </ion-card>
@@ -68,29 +68,3 @@
   </ion-grid>
 
 </ion-content>
-
-
-
-
-
-
-
-<!-- <ion-card>
-  <ion-card-header>
-    <ion-card-title>Vencidas</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Terminadas</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    
-  </ion-card-content>
-</ion-card> -->

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarComponent } from 'ionic2-calendar';
 import { TaskService } from 'src/app/core/services/task.service';
 
@@ -20,15 +21,87 @@ export class DiaryComponent implements OnInit
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router
   ) 
   { 
+    
+  }
+
+  ngOnInit() 
+  {
+    this.loadTasks();
+    // myStyleSheet.replaceSync('h1 { color: green; }');
+  }
+
+  loadTasks()
+  {
     this.taskService.getAllTasks().subscribe(
-      res => console.log(res)
+      res => {
+        console.log(res);
+        const expired = res['expired'];
+        const in_progress = res['in_progress'];
+        const completed = res['completed'];
+
+        for (const task of expired) 
+        {
+          task.startTime = this.convertDate(task.startTime);
+          task.time = this.convertTime(task.startTime);
+          task.endTime = this.convertDate(task.endTime);          
+        }
+
+        for (const task of in_progress) 
+        {
+          task.startTime = this.convertDate(task.startTime);
+          task.time = this.convertTime(task.startTime);
+          task.endTime = this.convertDate(task.endTime);          
+        }
+
+        for (const task of completed) 
+        {
+          task.startTime = this.convertDate(task.startTime);
+          task.time = this.convertTime(task.startTime);
+          task.endTime = this.convertDate(task.endTime);          
+        }
+
+        let events = [];
+
+        events.push(...expired);
+        events.push(...in_progress);
+        events.push(...completed);
+
+        this.eventSource = events;
+
+        // this.countExpired = expired.length;
+        // this.countInProgress = in_progress.length;
+        // this.countCompleted = completed.length;
+        console.log(this.eventSource);
+
+      },
+      error => console.log(error)
     );
   }
 
-  ngOnInit() {}
+  convertTime(date)
+  {
+    return date.toLocaleTimeString('es-CO');
+  }
+
+  convertDate(date)
+  {
+    // console.log("datos sin convertir: " + date);
+    const convertDate = new Date(date);
+    // console.log("despues: " + convertDate);
+    const result = new Date(Date.UTC(
+      convertDate.getUTCFullYear(), 
+      convertDate.getUTCMonth(), 
+      convertDate.getUTCDay(),
+      convertDate.getUTCHours(),
+      convertDate.getUTCMinutes()
+    ));
+
+    return result;
+  }
 
   next()
   {
@@ -75,15 +148,17 @@ export class DiaryComponent implements OnInit
             events.push({
                 title: 'Event - ' + i,
                 startTime: startTime,
+                time: startTime.toLocaleTimeString('es-CO'),
                 endTime: endTime,
                 allDay: false
             });
         }
     }
 
-    console.log(events);
+    // console.log(events);
 
     this.eventSource = events;
+    console.log(events);
   }
 
   removeEvents()
@@ -91,6 +166,16 @@ export class DiaryComponent implements OnInit
     this.eventSource = [];
   }
 
+  mostrar(event)
+  {
+    console.log(event);
+  }
+
+  selectEvent(event)
+  {
+    console.log(event);
+    this.router.navigate([`dashboard/tasks/complete/${event.management_id}`]);
+  }
 
 
 }

@@ -11,6 +11,7 @@ import { ImageModalComponent } from './property-details/image-modal/image-modal.
 import { NewTaskComponent } from './new-task/new-task.component';
 import { ModalSelectClientComponent } from './new-task/modal-select-client/modal-select-client.component';
 import { CompleteTaskComponent } from './complete-task/complete-task.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CompleteTaskComponent } from './complete-task/complete-task.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    CoreModule
+    CoreModule,
+    SignaturePadModule
   ]
 })
 export class DashboardModule { }

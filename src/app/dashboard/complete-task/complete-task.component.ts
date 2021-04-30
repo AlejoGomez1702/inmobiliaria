@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PhotoService } from 'src/app/core/services/photo.service';
+// import { SignaturePad } from 'angular2-signaturepad/angular2-signaturepad';
+import { SignaturePad } from 'angular2-signaturepad';
 
 @Component({
   selector: 'app-complete-task',
   templateUrl: './complete-task.component.html',
   styleUrls: ['./complete-task.component.scss'],
 })
-export class CompleteTaskComponent implements OnInit 
+export class CompleteTaskComponent implements OnInit, AfterViewInit
 {
+
+  @ViewChild(SignaturePad) signaturePad: SignaturePad;
+
+  private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
+    'minWidth': 5,
+    'canvasWidth': 500,
+    'canvasHeight': 200
+  };
+
   public taskForm = new FormGroup({
     management_type_id: new FormControl(4),
     clients: new FormControl([]),
@@ -25,10 +36,26 @@ export class CompleteTaskComponent implements OnInit
     public photoService: PhotoService
   ) { }
 
+  ngAfterViewInit(): void {
+    // this.signaturePad is now available
+    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+  }
+
   ngOnInit() {}
 
   addPhoto() {
     this.photoService.addNewToGallery();
+  }
+
+  drawComplete() {
+    // will be notified of szimek/signature_pad's onEnd event
+    console.log(this.signaturePad.toDataURL());
+  }
+
+  drawStart() {
+    // will be notified of szimek/signature_pad's onBegin event
+    console.log('begin drawing');
   }
 
   finishTask()

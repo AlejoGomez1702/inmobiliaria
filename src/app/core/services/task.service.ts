@@ -15,7 +15,7 @@ export class TaskService
   public getAllTasks()
   {
     const data = {
-      email: localStorage.getItem('user_email')
+      user_id: localStorage.getItem('user_id')
     };
 
     return this.httpClient.post(environment.apiUrl + 'tasks/all', data);

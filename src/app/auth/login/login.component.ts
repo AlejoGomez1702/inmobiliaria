@@ -32,8 +32,11 @@ export class LoginComponent implements OnInit
     this.authService.login(loginData).subscribe(
       response => {
         console.log(response)
-        localStorage.setItem('user_email', loginData.email);
-        this.authService.userEmail = loginData.email;
+        // user_email | user_id | token
+        localStorage.setItem('user_email', response['user_email']);
+        localStorage.setItem('user_id', response['user_id']);
+        localStorage.setItem('token', response['access_token']);
+        // this.authService.userEmail = loginData.email;
         this.router.navigate(['/dashboard/root']);
       },
       error => {

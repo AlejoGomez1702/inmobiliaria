@@ -18,4 +18,13 @@ export class AuthService
   {
     return this.httpClient.post(environment.apiUrl + 'auth/login', loginData);
   }
+
+  public isAuth(): boolean
+  {
+    const email = localStorage.getItem('user_email');
+    const userId = localStorage.getItem('user_id');
+    const token = localStorage.getItem('token');
+
+    return (email !== null && userId !== null && token !== null);
+  }
 }

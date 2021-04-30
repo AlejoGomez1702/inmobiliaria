@@ -3,6 +3,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NgCalendarModule } from 'ionic2-calendar';
 import { HtmlToTextPipe } from './pipes/html-to-text.pipe';
 import localeEs from '@angular/common/locales/es-CO';
@@ -18,6 +19,7 @@ registerLocaleData(localeEs);
     FormsModule,
     ReactiveFormsModule,
     NgCalendarModule,
+    // SignaturePadModule
     // IonicSelectableModule
   ],
   exports: [
@@ -26,6 +28,7 @@ registerLocaleData(localeEs);
     ReactiveFormsModule,
     NgCalendarModule,
     HtmlToTextPipe,
+    // SignaturePadModule
     // IonicSelectableModule
   ], 
   providers: [
