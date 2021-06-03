@@ -7,6 +7,8 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
   <!-- <ion-segment [(ngModel)]="calendar.mode">
     <ion-segment-button value="month">
@@ -33,7 +35,7 @@
     </ion-col>
   </ion-row> -->
 
-
+ 
   <ion-row>
     <ion-col size="2">
       <ion-button fill="clear" (click)="back()">
@@ -51,7 +53,39 @@
         <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
       </ion-button>
     </ion-col>
+ 
   </ion-row>
+  <ion-row>
+    <ion-col size="4">
+    
+      <ion-card color="primary">
+       
+          <ion-title>Pendiente</ion-title>
+      </ion-card>
+   
+      <ion-h6>Pendiente</ion-h6>
+    </ion-col>
+ 
+    <ion-col size="4">
+    
+      <ion-card color="danger">
+       
+        <ion-title>Vencidas</ion-title>
+      </ion-card>
+      <ion-text>Vencidas</ion-text>
+    </ion-col>
+ 
+
+  <ion-col size="4">
+    
+    <ion-card color="success">
+     
+        <ion-title>Completadas</ion-title>
+    </ion-card>
+     <ion-h6>Completadas</ion-h6>
+  </ion-col>
+
+ </ion-row>
 
   <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-item *ngFor="let event of selectedDate.events" button (click)="selectEvent(event)" class="mt-3"
@@ -62,6 +96,7 @@
         <p>{{ event.description }}</p>
       </ion-text>
     </ion-item>
+   
   </ng-template>
 
   <calendar     
@@ -73,4 +108,7 @@
   >
 
   </calendar>
+ 
+  
+
 </ion-content>

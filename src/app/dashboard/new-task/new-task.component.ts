@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/core/services/user.service';
 import { ModalSelectClientComponent } from './modal-select-client/modal-select-client.component';
 import { TaskService } from 'src/app/core/services/task.service';
@@ -32,7 +32,9 @@ export class NewTaskComponent implements OnInit
     private activatedRoute: ActivatedRoute,
     public modalController: ModalController,
     private userService: UserService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    public alertController: AlertController,
+    private router: Router
   ) 
   { 
     this.userService.getAllUsers().subscribe(
@@ -65,13 +67,57 @@ export class NewTaskComponent implements OnInit
   {
     this.taskForm.setControl('clients', new FormControl([this.selectedClient['id_client']]));
     const task = this.taskForm.value;
+    
     this.taskService.createTask(task).subscribe(
-      res => console.log(res)
-    );
+      res =>{
+        console.log(res)
+        this.presentAlertConfirm()
+    
+    },rej=>{
+      console.log(rej)
+     this.presentAlertError()
+    });
 
 
+    
     console.log(task);
+  }
 
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cita Agendada',
+      message: 'Todo ha salido satisfactoriamente',
+      buttons: [
+        {
+          text: 'Aceptar',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.router.navigate(['/dashboard/diary'])
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertError() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Ah ocurrido un error!!!',
+      message: 'Intentelo Nuevamente',
+      buttons: [
+        {
+          text: 'Aceptar',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }
