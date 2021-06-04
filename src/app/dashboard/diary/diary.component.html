@@ -55,37 +55,41 @@
     </ion-col>
  
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
-    
-      <ion-card color="primary">
-       
-          <ion-title>Pendiente</ion-title>
-      </ion-card>
-   
-      <ion-h6>Pendiente</ion-h6>
-    </ion-col>
- 
-    <ion-col size="4">
-    
-      <ion-card color="danger">
-       
-        <ion-title>Vencidas</ion-title>
-      </ion-card>
-      <ion-text>Vencidas</ion-text>
-    </ion-col>
- 
 
-  <ion-col size="4">
+
+  <!--  Vista de cuadros con colores-->
+  <ion-grid>
+  <ion-row>
+    <ion-col size="1" class="mt-1" >
+      <ion-icon color="primary"  style="background-color: #3A87AD; background: #3A87AD;" name="square-outline"></ion-icon>
+    </ion-col>
+
+    <ion-col size="3" >
     
-    <ion-card color="success">
-     
-        <ion-title>Completadas</ion-title>
-    </ion-card>
-     <ion-h6>Completadas</ion-h6>
-  </ion-col>
+      <ion-text  style="font-size: xx-small;">Pendientes</ion-text>
+    
+    </ion-col>
+
+    <ion-col size="1" class="mt-1">
+      <ion-icon color="danger" style="background-color: red;" name="square-outline"></ion-icon>
+    </ion-col>
+
+    <ion-col size="3" >
+      <ion-text style="font-size: xx-small;">Vencidas</ion-text>
+    </ion-col>
+
+    <ion-col size="1" class="mt-1" >
+      <ion-icon color="success" style="background-color: #009900;background: #009900;" name="square-outline"></ion-icon>
+    </ion-col>
+
+    <ion-col size="3" >
+ 
+      <ion-text  style="font-size: xx-small;">Completada</ion-text>
+    </ion-col>
+
 
  </ion-row>
+</ion-grid>
 
   <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-item *ngFor="let event of selectedDate.events" button (click)="selectEvent(event)" class="mt-3"
