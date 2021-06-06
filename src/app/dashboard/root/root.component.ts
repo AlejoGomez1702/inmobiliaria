@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TaskService } from 'src/app/core/services/task.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class RootComponent implements OnInit
   public countCompleted = 0;
 
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router
   ) { }
 
   ngOnInit() 
@@ -37,6 +39,10 @@ export class RootComponent implements OnInit
       },
       error => console.log(error)
     );
+  }
+
+  setCalendarStatus(status: string){
+    this.router.navigate(['/dashboard/diary', status]);
   }
 
 }

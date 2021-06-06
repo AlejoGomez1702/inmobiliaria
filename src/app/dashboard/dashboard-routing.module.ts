@@ -17,7 +17,7 @@ const routes: Routes = [
     component: RootComponent
   },
   {
-    path: 'diary',
+    path: 'diary/:status',
     component: DiaryComponent
   },
   {

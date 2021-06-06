@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarComponent } from 'ionic2-calendar';
 import { TaskService } from 'src/app/core/services/task.service';
 
@@ -12,6 +12,7 @@ export class DiaryComponent implements OnInit
 {
   public eventSource: any[] = [];
   public viewTitle: string = '';
+  public consulta: string = '';
 
   public calendar = {
     mode: 'month',
@@ -22,7 +23,8 @@ export class DiaryComponent implements OnInit
 
   constructor(
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ) 
   { 
     
@@ -30,6 +32,7 @@ export class DiaryComponent implements OnInit
 
   ngOnInit() 
   {
+    this.consulta = this.activeRoute.snapshot.paramMap.get('status'); //Variable que se envía para hacer la consulta en back
     this.loadTasks();
     // myStyleSheet.replaceSync('h1 { color: green; }');
   }

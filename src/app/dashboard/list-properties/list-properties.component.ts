@@ -16,6 +16,9 @@ export class ListPropertiesComponent implements OnInit
   public skip = 0;
   public maximumRecords = 100;
   public match = '';
+  public Form = {
+    busqueda:'',
+  };
 
   constructor(
     private propertyService: PropertyService,
@@ -26,6 +29,10 @@ export class ListPropertiesComponent implements OnInit
 
   ngOnInit() 
   {    
+  }
+
+  searchNew() {
+    this.loadProperties(null, this.Form.busqueda);
   }
 
   loadProperties(event?, match?)
@@ -67,6 +74,7 @@ export class ListPropertiesComponent implements OnInit
 
   search(event)
   {
+    console.log(event.detail.value);
     // this.skip = 0;
     this.properties = [];
     this.match = event.detail.value;

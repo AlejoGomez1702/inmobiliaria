@@ -15,6 +15,7 @@ export class PropertyService
 
   public getAllProperties(skip: string, match?: string)
   {
+    console.log('Match que llega: ', match);
     const body = {
       'skip': skip,
       'take': 10,

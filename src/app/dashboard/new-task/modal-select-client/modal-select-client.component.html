@@ -8,7 +8,11 @@
     <ion-title color="white">Seleccionar Cliente</ion-title>    
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Buscar..." (ionChange)="search($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
+    <ion-searchbar slot="secondary" placeholder="Buscar..." [(ngModel)]="Form.busqueda" (ionCancel)="cancelSearch()">
+    </ion-searchbar>
+    <ion-button slot="primary" (click)="searchNew()">
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

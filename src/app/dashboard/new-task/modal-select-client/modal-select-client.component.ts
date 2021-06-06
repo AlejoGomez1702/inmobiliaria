@@ -17,6 +17,9 @@ export class ModalSelectClientComponent implements OnInit
   public skip = 0;
   public maximumRecords = 100;
   public match = '';
+  public Form = {
+    busqueda:'',
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -88,6 +91,10 @@ export class ModalSelectClientComponent implements OnInit
   selectClient(client)
   {
     this.modalController.dismiss(client);
+  }
+
+  searchNew() {
+    this.loadClients(null, this.Form.busqueda);
   }
 
   search(event)

@@ -9,7 +9,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Panel', url: '/dashboard/root', icon: 'prism' },
     { title: 'Propiedades', url: '/dashboard/properties', icon: 'business' },
-    { title: 'Mi Agenda', url: '/dashboard/diary', icon: 'calendar' },
+    { title: 'Mi Agenda', url: '/dashboard/diary/all', icon: 'calendar' },
     // { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
     // { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
     // { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
