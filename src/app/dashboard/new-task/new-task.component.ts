@@ -22,7 +22,7 @@ export class NewTaskComponent implements OnInit
     notify_clients: new FormControl(false, Validators.required),
     properties: new FormControl([this.activatedRoute.snapshot.paramMap.get('id')]),
     subject: new FormControl('', Validators.required),
-    id_user: new FormControl(localStorage.getItem('user_email'), Validators.required), // encargado de la tarea.
+    id_user: new FormControl(localStorage.getItem('user_id'), Validators.required), // encargado de la tarea.
     date: new FormControl('', Validators.required),
     management_status_id: new FormControl(1, Validators.required),
     description: new FormControl('', Validators.required)
@@ -67,6 +67,9 @@ export class NewTaskComponent implements OnInit
   {
     this.taskForm.setControl('clients', new FormControl([this.selectedClient['id_client']]));
     const task = this.taskForm.value;
+
+    console.log("Esta es la tarea que estoy enviando al backend: ");
+    console.log(task);
     
     this.taskService.createTask(task).subscribe(
       res =>{
@@ -86,14 +89,14 @@ export class NewTaskComponent implements OnInit
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Cita Agendada',
-      message: 'Todo ha salido satisfactoriamente',
+      header: 'Cita Agendada!',
+      message: 'Correctamente',
       buttons: [
         {
           text: 'Aceptar',
           cssClass: 'secondary',
           handler: (blah) => {
-            this.router.navigate(['/dashboard/diary'])
+            this.router.navigate(['/dashboard/diary/all'])
           }
         }
       ]
@@ -105,7 +108,7 @@ export class NewTaskComponent implements OnInit
   async presentAlertError() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Ah ocurrido un error!!!',
+      header: 'Error Agendando Cita!',
       message: 'Intentelo Nuevamente',
       buttons: [
         {
